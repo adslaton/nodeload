@@ -10,11 +10,6 @@ INSTALLING
 
 Make sure [node.js](http://nodejs.org/#download) is installed. Then install `nodeload`:
 
-~~0. Using [npm](http://npmjs.org/):~~
-
-        ~~curl http://npmjs.org/install.sh | sh       # install npm if not already installed~~
-        ~~npm install nodeload~~
-
 1. From source:
 
         git clone git://github.com/adslaton/nodeload.git
