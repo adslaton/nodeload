@@ -10,20 +10,20 @@ INSTALLING
 
 Make sure [node.js](http://nodejs.org/#download) is installed. Then install `nodeload`:
 
-1. Using [npm](http://npmjs.org/):
+~~0. Using [npm](http://npmjs.org/):~~
 
-        curl http://npmjs.org/install.sh | sh       # install npm if not already installed
-        npm install nodeload
+        ~~curl http://npmjs.org/install.sh | sh       # install npm if not already installed~~
+        ~~npm install nodeload~~
 
-2. From source:
+1. From source:
 
-        git clone git://github.com/benschmaus/nodeload.git
+        git clone git://github.com/adslaton/nodeload.git
         cd nodeload
         npm link    # optional. enables require('nodeload/<module>') instead of require('./lib/<module>').
 
-3. Or as a single file (this does not install the `nl.js` tool):
+2. Or as a single file (this does not install the `nl.js` tool):
 
-        wget https://github.com/benschmaus/nodeload/raw/master/nodeload.js
+        wget https://github.com/adslaton/nodeload/raw/master/nodeload.js
 
 NODELOAD
 ================
@@ -71,7 +71,7 @@ Start slave instances:
 
     $ HTTP_PORT=10001 ./nodeload.js  # start a local slave instance on :10001
     $ HTTP_PORT=10002 ./nodeload.js  # start a 2nd slave instance on :10002
-    
+
 Create the distributed load test:
 
     var nl = require('nodeload/remote');
@@ -95,7 +95,7 @@ The `stats` module provides implementations of various statistics objects, like 
 
     var stats = require('nodeload/stats');
     var histogram = new stats.Histogram();
-    for (var i = 0; i < 1000; i++) 
+    for (var i = 0; i < 1000; i++)
         histogram.put(Math.abs(Math.floor(stats.nextGaussian())));
     console.log('Mean: ' + histogram.mean() + ', 99%: ' + histogram.percentile(0.99));
 
@@ -122,7 +122,7 @@ will output "`Median runtime (ms): 497`".
 
 The `reporting` module provides a way to graph values over time and present it in a auto-updating HTML page. See [`test/reporting.test.js`](https://github.com/benschmaus/nodeload/tree/master/test/reporting.test.js) for examples or read the [reporting module documentation](https://github.com/benschmaus/nodeload/tree/master/doc/reporting.md).
 
-    var reporting = require('nodeload/reporting'), 
+    var reporting = require('nodeload/reporting'),
         stats = require('nodeload/stats'),
         report = reporting.REPORT_MANAGER.addReport('Random Numbers'),
         chart = report.getChart('Gaussian / Pareto vs. Time (minutes)');
@@ -146,7 +146,7 @@ The `loop` module provides a way to execute a function at a set rate and concurr
         requests = 0,
         client = http.createClient(80, 'www.google.com'),
         l = new loop.MultiLoop({
-            fun: function(finished) { 
+            fun: function(finished) {
                 client.request('GET', '/').end();
                 requests++;
                 finished();
